@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build": "npm i",
     "start": "nodemon ./src/db/index.js",
     "start:prod": "NODE_ENV=production node ./src/db/index.js"
   },
