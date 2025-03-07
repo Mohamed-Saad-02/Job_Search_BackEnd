@@ -16,7 +16,7 @@ const mountRoutes = (app) => {
 
   app.use("/graphql", createHandler({ schema: GraphSchema }));
 
-  app.use("/", (req, res) => res.send("Hello World!"));
+  app.use("/", (req, res) => res.status(200).json({ message: "Hello World!" }));
 
   // For All Routing not match above
   app.all("*", (req, res, next) =>
