@@ -9,10 +9,11 @@ import app from "../app.js";
 import { Server } from "socket.io";
 import { establishIoConnection } from "../socket/socket.js";
 
-// process.on("uncaughtException", (err) => {
-//   console.log("UNCAUGHT REJECTION! 💥 Shutting down...");
-//   console.log(err.name, err.message);
-// });
+process.on("uncaughtException", (err) => {
+  console.log("UNCAUGHT REJECTION! 💥 Shutting down...");
+  console.log(err.name, err.message);
+  server.close(() => process.exit(1));
+});
 
 const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
@@ -42,10 +43,10 @@ export const io = new Server(server, {
 establishIoConnection(io);
 
 // Handle Async Promise Rejection
-// process.on("unhandledRejection", (err) => {
-//   console.log(err.name, err.message);
-//   console.log("UNHANDLED REJECTION! 💥 Shutting down...");
-//   server.close(() => process.exit(1));
-// });
+process.on("unhandledRejection", (err) => {
+  console.log(err.name, err.message);
+  console.log("UNHANDLED REJECTION! 💥 Shutting down...");
+  server.close(() => process.exit(1));
+});
 
 export default server;
