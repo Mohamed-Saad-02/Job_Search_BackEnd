@@ -16,6 +16,8 @@ const mountRoutes = (app) => {
 
   app.use("/graphql", createHandler({ schema: GraphSchema }));
 
+  app.use("/", (req, res) => res.send("Hello World!"));
+
   // For All Routing not match above
   app.all("*", (req, res, next) =>
     next(new AppError(`Can't Find this route: ${req.originalUrl}`, 400))
