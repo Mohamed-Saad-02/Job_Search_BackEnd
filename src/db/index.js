@@ -47,3 +47,5 @@ process.on("unhandledRejection", (err) => {
   console.log("UNHANDLED REJECTION! 💥 Shutting down...");
   server.close(() => process.exit(1));
 });
+
+export default server;
